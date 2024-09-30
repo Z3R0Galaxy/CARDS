@@ -90,12 +90,3 @@ while True:
        break
 
 print('OK bye')
-
-'''Game Rules:
-1. Objective: Predict if the next card will be higher or lower than the current card and earn points.
-2. Card Values: Cards rank from Ace (1) to King (13). Suits don't affect value.
-3. Starting Score: You begin with 50 points.
-4. Gameplay: Guess if the next card will be higher ('h') or lower ('l'). 8 cards are played per round.
-5. Scoring: Correct guess: +20 points. Incorrect guess: -15 points.
-6. Play Again: Press ENTER to play again or 'q' to quit.
-'''
