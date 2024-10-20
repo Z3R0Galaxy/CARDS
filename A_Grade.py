@@ -1,56 +1,52 @@
 import random #import the "random" library
-import os
-from time import sleep
+import os #import the "os" library
+from time import sleep #import "sleep" from the "random" library
 
-
-wait = 1
-
+wait = 1 #var for sleep time
 
 SUIT_TUPLE = ('Spades', 'Hearts', 'Clubs', 'Diamonds')
 RANK_TUPLE = ('Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King')
 #two tuples are created to store both the suits and ranks respectively
 
-
 NCARDS = 8 #var to store num of cards to be played in one game
-
 
 def getCard(deckListIn):
   thisCard = deckListIn.pop() # pops one off the top of the deck and returns it
   return thisCard
+
 def shuffle(deckListIn):
   deckListOut = deckListIn.copy()  # make a copy of the starting deck
   random.shuffle(deckListOut) #randomly shuffle deck and return
   return deckListOut
 
-
 def check(guess):
    if guess == 'h':
        if nextCardValue > currentCardValue: #if answer is correct
            print('You got it RIGHT')
-           return 20
+           return 20 #returns 20
        else: #if answer is incorrect
            print('You got it WRONG')
-           return -15
+           return -15 #returns -15
    elif guess == 'l':
        if nextCardValue < currentCardValue: #if answer is correct
            print('You got it RIGHT')
-           return 20 # 20 points are added to the score
+           return 20 #returns 20
        else: #if answer is incorrect
            print('You got it WRONG')
-           return -15 # 15 points are taken away from score
+           return -15 #returns -15
 
+os.system("clear") #clears terminal
 
-os.system("clear")
 print('Welcome to the Game')
 sleep(wait)
 print('The programmer has forgotten to give you the game instructions.')
 sleep(wait)
 print("Please decide who will be player 1 and player 2")
 sleep(wait)
-input("Press Enter to continue...")
-os.system("clear")
 #print welcome messages
 
+input("Press Enter to continue...") # waits for user input continue 
+os.system("clear")
 
 startingDeckList = [] #creates an empty list to store the starting deck
 for suit in SUIT_TUPLE: #iterates through each suit in "SUIT_TUPLE"
@@ -65,21 +61,18 @@ while True:
   gameDeckList = shuffle(startingDeckList) #the game deck is shuffled via the shuffle() function
   currentCardDict = getCard(gameDeckList) #the top card is taken off the newly shuffled deck via the getCard() funciton
 
-
   #the rank, value and suit for the current card is assigned to its corresponding var via its individual dictionay
   currentCardRank = currentCardDict['rank']
   currentCardValue = currentCardDict['value']
   currentCardSuit = currentCardDict['suit'] 
-
 
   #prints the starting card and suit to the terminal
   print('Starting card is:', currentCardRank + ' of ' + currentCardSuit)
   print("--------------------------------")
   sleep(wait)
 
-
   for cardNumber in range(0, NCARDS):   # play one game of this many cards
-      #The user is prompted with a question (higher or lower), and their answer is assigned to the var: 'answer'
+      #Each player is prompted with a question (higher or lower), and their answer is assigned to their respective var
       os.system("clear")
       P1_answer = input('PLAYER 1: Will the next card be higher or lower than the ' +
                              currentCardRank + ' of ' +
@@ -93,7 +86,6 @@ while True:
       P2_answer = P2_answer.casefold()  # force lower case of P2_answer
       nextCardDict = getCard(gameDeckList) # the next card in the gameDeckList is called and assigned to nextCardDict
 
-
       #the rank, value and suit for the next card is assigned to its corresponding var via its individual dictionay
       nextCardRank = nextCardDict['rank']
       nextCardSuit = nextCardDict['suit']
@@ -102,13 +94,14 @@ while True:
 
       print("The next card is")
       sleep(wait)
-      for i in range (3):
+      for i in range (3): #loop for dots
            print(".")
            sleep(wait)
       print(nextCardRank + ' of ' + nextCardSuit) # prints rank and suit of the next card to terminal
       sleep(wait*2)
       os.system("clear")
      
+     #prints results of both players
       print("PLAYER 1")
       sleep(wait)
       P1_score += check(P1_answer)
@@ -120,6 +113,7 @@ while True:
       print()
       sleep(wait)
      
+     #prints scores of both players
       print("Player 1's score is now:", P1_score)
       print("Player 2's score is now:", P2_score)
       input("Press Enter to continue to next round...")
@@ -129,10 +123,13 @@ while True:
       currentCardRank = nextCardRank
       currentCardValue = nextCardValue
       currentCardSuit = nextCardSuit
+      
   print("The game has ended...")
   goAgain = input('To play again, press ENTER, or "q" to quit and tally results: ') #user is prompted whether they want to play again
   if goAgain == 'q': # only if the user answers "q", the while loop breaks for the game to end
    os.system("clear")
+
+   #prints the winner and respective scores
    print("AND NOW FOR THE WINNTER")
    print("------------------------")
    sleep(wait)
@@ -145,4 +142,5 @@ while True:
    else:
        print("Wow you tied with the same score of", P1_score)
    break
+  
 print('OK bye')
