@@ -20,20 +20,12 @@ def shuffle(deckListIn):
   return deckListOut
 
 def check(guess):
-   if guess == 'h':
-       if nextCardValue > currentCardValue: #if answer is correct
-           print('You got it RIGHT')
-           return 20 #returns 20
-       else: #if answer is incorrect
-           print('You got it WRONG')
-           return -15 #returns -15
-   elif guess == 'l':
-       if nextCardValue < currentCardValue: #if answer is correct
-           print('You got it RIGHT')
-           return 20 #returns 20
-       else: #if answer is incorrect
-           print('You got it WRONG')
-           return -15 #returns -15
+    if (guess == 'h' and nextCardValue > currentCardValue) or (guess == 'l' and nextCardValue < currentCardValue):
+        print('You got it RIGHT')
+        return 20
+    else:
+        print('You got it WRONG')
+        return -15
 
 os.system("clear") #clears terminal
 
