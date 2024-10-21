@@ -83,7 +83,6 @@ while True:
       nextCardSuit = nextCardDict['suit']
       nextCardValue = nextCardDict['value']
 
-
       print("The next card is")
       sleep(wait)
       for i in range (3): #loop for dots
@@ -109,7 +108,6 @@ while True:
       print("Player 1's score is now:", P1_score)
       print("Player 2's score is now:", P2_score)
       input("Press Enter to continue to next round...")
-
 
       #next card's rank, value and suit are reassigned to the current card vars respectively
       currentCardRank = nextCardRank
